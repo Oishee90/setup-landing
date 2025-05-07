@@ -8,6 +8,7 @@ import Faq from "./Faq";
 
 import Module from "./Module";
 import Footer from "./Footer";
+import ReviewSlider from "./ReviewSlider";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Discover></Discover>
       <Video></Video>
       {/* <Pricing></Pricing> */}
+      <ReviewSlider></ReviewSlider>
       <Faq></Faq>
       <Module></Module>
       <Footer></Footer>

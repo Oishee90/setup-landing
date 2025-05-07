@@ -3,7 +3,7 @@ import discover from "../../assets/discover.png";
 
 const Discover = () => {
   return (
-    <div className=" p-4">
+    <div id="features" className=" p-4">
       <div className="flex flex-col items-start justify-start container mx-auto lg:w-[42%] pb-32 leading-[140%] ">
         <img src={discover} alt="" />
         <h1 className="dm-sans text-white text-3xl font-extrabold mt-4 text-center">

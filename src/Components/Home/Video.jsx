@@ -2,10 +2,10 @@ import React from "react";
 import discover from "../../assets/discover.png";
 const Video = () => {
   return (
-    <div className=" p-4 pb-32">
-      <div className="flex flex-col items-start justify-start container mx-auto lg:w-1/4 pt-32 pb-22 leading-[140%] ">
+    <div className=" p-4 lg:pb-32">
+      <div className="flex flex-col items-start justify-start container mx-auto lg:w-1/4 pt-32 pb-8 lg:pb-22 leading-[140%] ">
         <img src={discover} alt="" />
-        <h1 className="dm-sans text-white text-3xl font-extrabold mt-4 text-center">
+        <h1 className="dm-sans text-white text-3xl font-extrabold  text-center">
           How does the app work?
         </h1>
       </div>
@@ -21,7 +21,6 @@ const Video = () => {
           />
         </div>
       </div>
-   
     </div>
   );
 };

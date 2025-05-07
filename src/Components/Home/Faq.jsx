@@ -6,29 +6,35 @@ const faqs = [
   {
     question: "What is Probet?",
     answer:
-      "SmartNotes is a digital platform designed to help users take, organize, and collaborate on notes seamlessly.",
+      "Probet is an innovative digital platform designed to streamline online betting experiences, offering real-time updates, secure transactions, and user-friendly interfaces.",
   },
   {
-    question: "How do I get started with SmartNotes?",
+    question: "How do I get started with Probet?",
     answer:
-      "Getting started with SmartNotes is easy! Simply visit our website, sign up for a free trial, and start exploring the features. Our intuitive interface and comprehensive onboarding materials will guide you through the process.",
+      "Getting started with Probet is simple! Just visit our website, create an account, and explore our intuitive dashboard to start placing your bets or tracking analytics.",
   },
   {
-    question: "What are the key features of SmartNotes?",
+    question: "What are the key features of Probet?",
     answer:
-      "Real-time collaboration, AI-powered organization, customizable templates, cloud storage, and more.",
+      "Probet offers real-time odds tracking, secure wallet integration, bet history analysis, intuitive UI, and responsive customer support.",
   },
   {
-    question: "How much does SmartNotes cost?",
+    question: "How much does Probet cost?",
     answer:
-      "SmartNotes offers flexible pricing plans starting at $9.99/month for individuals and $19.99/month for teams.",
+      "Probet is free to join. We may offer premium features or add-ons in the future, but basic access to the platform is completely free.",
   },
   {
-    question: "Who is SmartNotes for?",
+    question: "Who is Probet for?",
     answer:
-      "SmartNotes is ideal for students, professionals, and teams looking to enhance productivity and collaboration.",
+      "Probet is perfect for sports enthusiasts, casual bettors, and professionals looking for a clean and efficient platform to enhance their betting strategies.",
+  },
+  {
+    question: "Is Probet safe to use?",
+    answer:
+      "Absolutely. Probet uses industry-standard encryption and follows best practices to ensure your data and transactions are secure.",
   },
 ];
+
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(1); // Second item expanded by default
 
@@ -36,7 +42,7 @@ const Faq = () => {
     setActiveIndex(index === activeIndex ? null : index);
   };
   return (
-    <div>
+    <div id="faq">
       {/* <div className="flex flex-col items-start justify-start container mx-auto lg:w-[42%] pb-32 leading-[140%] ">
         <img src={discover} alt="" />
         <h1 className="dm-sans text-white text-3xl font-extrabold mt-4 text-center">

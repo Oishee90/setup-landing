@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import { BsArrowUpRightSquare } from "react-icons/bs";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { BsArrowRightSquare } from "react-icons/bs";
-
+import { CgArrowTopRightR } from "react-icons/cg";
+import { BsArrowRight } from "react-icons/bs";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal State
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const menuItems = [
     { name: "Home", id: "home" },
     { name: "Features", id: "features" },
-    { name: "pricing", id: "pricing" },
-    { name: "FAQ", id: "Faq" },
+    { name: "Review", id: "review" },
+    { name: "FAQ", id: "faq" },
   ];
 
   useEffect(() => {
@@ -63,10 +63,37 @@ const Navbar = () => {
       }
     }
   }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // Existing section tracking
+      menuItems.forEach(({ id }) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+            setActiveSection(id);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div>
-      <nav className=" container mx-auto    text-white ">
+    <div className="container mx-auto ">
+      <nav
+        className={`text-white fixed top-0 left-0 w-full z-50 bg-[#000000] transition-all duration-300 ${
+          isScrolled ? "border-b-2 border-[#ff6a0098]" : "border-b-black"
+        }`}
+      >
         <div className="container mx-auto flex justify-between items-center 2xl:py-2 px-6 pt-6 pb-6 ">
           {/*  Left: Logo */}
           <div className="text-xl md:text-xl lg:text-2xl font-extrabold dm-sans text-[#FFFFFF]">
@@ -103,33 +130,22 @@ const Navbar = () => {
 
           {/*  Right: Log In & Sign Up (Large Screen) */}
           <div className="hidden lg:flex items-center gap-6">
-            {user ? (
-              <Link
-                to="/dashboamontserratrd"
-                className=" md:text-base rounded-3xl bg-gradient-to-b from-[#00B2F7] via-[#1E3A8A]  to-[#080F24] px-3 py-2  sm:px-5 sm:py-2.5 text-sm font-medium text-white"
-              >
-                Dashboard
-              </Link>
-            ) : (
-              <>
-                <NavLink
-                  to="/signUp"
-                  className="dm-sans md:text-base rounded-xl bg-gradient-to-r from-[#FF6A00] to-[#FF6A007F] sm:px-5 sm:py-2.5 text-sm font-medium text-white flex items-center gap-3 group transition-all duration-300"
-                >
-                  Get started
-                  {/* Default icon (visible) */}
-                  <BsArrowUpRightSquare className="text-white block group-hover:hidden transition-all duration-300" />
-                  {/* Hover icon (hidden by default) */}
-                  <BsArrowRightSquare className="text-white hidden group-hover:block transition-all duration-300" />
-                </NavLink>
-              </>
-            )}
+            <button className="group relative px-3 py-2 bg-gradient-to-l from-[#FF5C1980] to-[#FF6A00] text-white rounded-lg flex items-center font-bold text-lg overflow-hidden">
+              <span className="mr-2">Get Started</span>
+
+              <span className="relative w-5 h-5 flex items-center justify-center">
+                {/* Default Icon */}
+                <CgArrowTopRightR className="absolute inset-0 transition-opacity duration-500 opacity-100 group-hover:opacity-0" />
+                {/* Hover Icon */}
+                <BsArrowRight className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+              </span>
+            </button>
           </div>
 
           {/*  Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden focus:outline-none text-black"
+            className="lg:hidden focus:outline-none text-[#ffd5a5]"
           >
             {isOpen ? (
               <svg
@@ -168,7 +184,7 @@ const Navbar = () => {
         {/*  Mobile Menu */}
       </nav>
       {isOpen && (
-        <div className="lg:hidden mt-4  bg-[#a0d2ff] rounded-tl-2xl rounded-br-2xl text-center p-4  container mx-auto m-4 absolute z-50">
+        <div className="lg:hidden fixed top-[93px] w-full bg-[#ffe6d4]  text-center p-4 z-40 shadow-md transition-all duration-300 left-4 right-5">
           <ul className="flex flex-col gap-4">
             {menuItems.map(({ name, id }) => (
               <li key={id}>
@@ -185,35 +201,18 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="mt-4 flex flex-col gap-4">
-            {user ? (
-              <Link
-                to="/dashboard"
-                className="dm-sans md:text-base px-5 py-2.5 text-sm font-medium text-[#000000]"
-              >
-                Dashboard
-              </Link>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="dm-sans md:text-base px-5 py-2.5 text-sm font-medium text-[#000000]"
-                >
-                  Log in
-                </Link>
-                <div className="w-full justify-center flex">
-                  <NavLink
-                    to="/signUp"
-                    className="dm-sans md:text-base rounded-xl bg-gradient-to-r from-[#FF6A00] to-[#FF6A007F] sm:px-5 sm:py-2.5 text-sm font-medium text-[#080808] flex items-center gap-3 group transition-all duration-300"
-                  >
-                    Get started
-                    {/* Default icon (visible) */}
-                    <BsArrowUpRightSquare className="text-[#333333] hover:text-white block group-hover:hidden transition-all duration-300" />
-                    {/* Hover icon (hidden by default) */}
-                    <BsArrowRightSquare className="text-[#333333] hover:text-white hidden group-hover:block transition-all duration-300" />
-                  </NavLink>
-                </div>
-              </>
-            )}
+            <div className="w-full justify-center flex">
+              <button className="group relative px-3 py-2 bg-gradient-to-l from-[#FF5C1980] to-[#FF6A00] text-white rounded-lg flex items-center font-bold text-lg overflow-hidden">
+                <span className="mr-2">Get Started</span>
+
+                <span className="relative w-5 h-5 flex items-center justify-center">
+                  {/* Default Icon */}
+                  <CgArrowTopRightR className="absolute inset-0 transition-opacity duration-500 opacity-100 group-hover:opacity-0" />
+                  {/* Hover Icon */}
+                  <BsArrowRight className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       )}
