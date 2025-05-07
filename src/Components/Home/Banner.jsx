@@ -1,0 +1,45 @@
+import banner from "../../assets/banner.png";
+import { NavLink } from "react-router-dom";
+import google from "../../assets/google.png";
+import app from "../../assets/app.png";
+
+const Banner = () => {
+  return (
+    <div className="container mx-auto mt-28 pb-32 p-4">
+      <div className="flex lg:flex-row flex-col-reverse  items-center lg:items-center justify-between gap-10">
+        {/*  content  */}
+        <div className="flex flex-col items-center lg:items-start  gap-4 lg:w-1/2 w-full text-white">
+          <h1 className="dm-sans text-6xl main-color font-extrabold leading-[130%]">
+            <span className="bg-gradient-to-r from-[#FF5C1980] to-[#FF6A00] bg-clip-text text-transparent">
+              Intelligent
+            </span>{" "}
+            cloud-based{" "}
+            <span className="bg-gradient-to-r from-[#FF5C1980] to-[#FF6A00] bg-clip-text text-transparent">
+              note-taking
+            </span>{" "}
+            and collaboration tool
+          </h1>
+
+          <p className="dm-sans   text-base   font-normal leading-[160%] text-[#BABABA] ">
+            Experience the power of smart note-taking and transform the way you
+            work today.
+          </p>
+          <div className="flex items-center gap-4">
+            <a href="">
+              <img src={google} alt="" />
+            </a>
+            <a href="">
+              <img src={app} alt="" />
+            </a>
+          </div>
+        </div>
+        {/* img */}
+        <div className="lg:w-1/2 w-full ">
+          <img src={banner} alt="banner" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Banner;
